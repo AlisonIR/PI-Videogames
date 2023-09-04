@@ -6,6 +6,7 @@ const { getGameById } = require('../Controllers/getGameById')
 //const { createGame } = require('../Controllers/createGame')
 const { getByName } = require('../Controllers/getByName')
 const { getAllGenre } = require('../Controllers/getAllGenre')
+const { postGames } = require('../Controllers/postGames')
 
 
 
@@ -17,7 +18,8 @@ const router = Router();
  router.get('/videogames', getAllGames)
  router.get('/videogames/name', getByName)
  router.get('/videogames/:idVideogames', getGameById)
- router.get('/genre', getAllGenre)
+ router.get('/genres', getAllGenre)
+ router.post('/videogames', postGames)
 
  //router.post('/videogames/created', createGame)
 

@@ -1,16 +1,24 @@
-require('dotenv').config()
-const axios = require('axios');
-const URL = "https://api.rawg.io/api/games"
-const {API_KEY} = process.env
+require('dotenv').config();
+
+const { mergedGames } = require('./mergedGames')
+
 
 const getAllGames = async (req, res) => {
-   try {   
-        const respDos = await axios.get(`${URL}?key=${API_KEY}`)
-        return respDos.data ?  res.status(200).json(respDos.data) : res.status(404).send('Not found!')
-        }
-        catch (error) {
-         res.status(500).send(error.message)
-        }
+ 
+//Lista de juegos fusionados (API Y BD)
+
+   let gamesList = await mergedGames() 
+
+   const {name} = req.query
+
+   //Filtro para buscar por nombre un videojuego
+   if(name){
+      let gameName = await gamesList.filter(vg => vg.name.toLowerCase().includes(name.toLowerCase()));
+      gameName.length ? res.status(200).send(gameName) : res.status(404).send('Game not found!')
+      console.log(gamesList)
+   } else {
+      res.status(200).send(gamesList) //Envio todos los juegos
+   }
  }
 
 

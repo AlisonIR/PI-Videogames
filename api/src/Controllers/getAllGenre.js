@@ -6,27 +6,28 @@ const {Genres} = require('../models/Genres')
 //Revisar imports
 
 const getAllGenre = async (req, res) => {
+//Busca si existe ese genero en la base de datos, de lo contrario lo crea 
+// y devuelve todos los generos
     try {   
-         const genresResponse = await axios.get(`${URL}?key=${API_KEY}`).data
-    
-         const genresName = genresResponse.map(gender => gender.name)
+         const genresResponse = await axios.get(`${URL}?key=${API_KEY}`)
+         const genresResults = genresResponse.data.results;
 
-         await genresName.map(async (gender, i) => {
+         genresResults.forEach(async (elem) => {
             await Genres.findOrCreate({
-                where: {name: gender},
-                defaults: {id: i+1}
-            });
-         });
+                where : {name: elem.name}
+            })
+         })
 
-         const allGenresOnDB = Genres.findAll()
-         return allGenresOnDB
-        }
-          
+        const allGenres = await Genres.findAll();
+        return res.status(200).json(allGenres)
+}
 
-         catch (error) {
-          res.status(500).send(error.message)
-         }
-  
+catch (error) {
+    res.status(500).send(error.message)
+}
+
+
+
 }
  
  module.exports = {getAllGenre}

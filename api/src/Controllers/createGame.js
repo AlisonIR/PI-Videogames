@@ -1,16 +1,31 @@
-const createdGame = require('../utils/createdGame')
+const {Videogame} = require('../models/Videogame')
+const {Genres} = require('../models/Genres')
 
-const createGame = async (req, res) => {
+const createGame = async (name, description, releaseDate, rating, platforms, image, genreName) => {
+ 
+    const createdGame = await Videogame.findOne({where: {name}});
+    if(createdGame) {
+        throw new Error(`${name} already has been created`)
+    }
 
-    try{
-        const {name, description, released, rating, platform, genre, image} = req.body
-        const newGame = await createdGame(name, description, released, rating, platform, genre, image)
-        res.send(newGame)
-      } 
-      catch(error) {
-          res.status(400).send({message: error.message})
-      }
+ const newGame = await Videogame.create({
+    name, 
+    description,
+    releaseDate,
+    rating,
+    platforms,
+    image
+ })
+
+ if(genreName?.length > 0){
+    const genres = await Genres.findAll({
+        where: {
+            name: genreName,
+        },
+    })
+    await newGame.setGenres(genres)
+ }
+ return "The game has been created successfully!"
 }
 
 module.exports = {createGame}
-

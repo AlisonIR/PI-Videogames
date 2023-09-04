@@ -5,18 +5,20 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Videogame', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
+      unique: true,
       primaryKey: true,
-      autoIncrement: true
+      defaultValue: DataTypes.UUIDV4
     },
     name:{
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      
     },
+
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
 
     },
@@ -25,19 +27,27 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     image:{
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
 
     releasedate:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false
 
     },
 
     rating:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+
+    //Distingo entre API Y BD
+    createDB: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
       allowNull: false
     }
+
   }, {timestamps: false});
 };
