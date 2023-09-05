@@ -1,0 +1,54 @@
+.div-container{
+    width: 20vw;
+    height: 18vw;
+    background-color: #DEB887;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 5rem 0;
+    position: relative;
+    border-radius: 0.4rem;
+    margin: 0.5rem;
+  }
+  
+  .name{
+    font-size: 0.8em;
+    margin: auto 0;
+    color: black;
+    position: absolute;
+    bottom: 4vh;
+    left: 0.5px;
+    background-color: #FFEBCD;
+    width: 20vw;
+    height: 4vh;
+  }
+  
+  .image{
+    width: 100%;
+  }
+  
+  .btn{
+    background-color: #F08080;
+    color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    width: 4vw;
+    height: 3vh;
+    cursor: pointer;
+  }
+  
+  .data{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    font-size: 9px;
+    margin-top: 5px;
+    
+  }
+  
+  .hearth {
+    width: 21vw;
+  }
+  

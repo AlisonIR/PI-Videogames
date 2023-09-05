@@ -1,5 +1,4 @@
-const {Genres} = require('../models/Genres')
-const {Videogame} = require('../models/Videogame')
+const {Videogame, Genres} = require('../db')
 
 
 //Busco videojuegos creados en la base de datos
@@ -14,7 +13,7 @@ const getDbData = async () => {
         }
     });
 
-    return data
+    return data;
 }
 
 module.exports = {getDbData}

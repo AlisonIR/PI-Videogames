@@ -1,4 +1,5 @@
 import React from 'react'
+import '../FormPage/Form.css'
 
 
 const FormPage = () => {
