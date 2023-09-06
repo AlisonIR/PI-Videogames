@@ -26,14 +26,14 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false
     },
-    image:{
+    img:{
       type: DataTypes.TEXT,
       allowNull: false
     },
 
     releasedate:{
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
 
     },
 

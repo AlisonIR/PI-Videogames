@@ -2,17 +2,17 @@ require('dotenv').config()
 const axios = require('axios')
 const URL = "https://api.rawg.io/api/games/"
 const {API_KEY} = process.env
-const {Videogame} = require('../models/Videogame')
-const {Genres} = require('../models/Genres')
+const {Videogame, Genres} = require('../db')
+
 
 const getGameById = async (req, res) => {
 //Busca primero en la API, luego busca en BD.
-    const { idVideogames } = req.params;
+    const {id} = req.params;
     
-    if(Number(idVideogames)){
+    if(Number(id)){
 
     try {
-        const datos = await axios.get(`${URL}${idVideogames}?key=${API_KEY}`)
+        const datos = await axios.get(`${URL}${id}?key=${API_KEY}`)
         return datos.data ? res.status(200).json(datos.data) : res.status(404).send('Not found')
     }
 
@@ -21,7 +21,7 @@ const getGameById = async (req, res) => {
     }
 } else {
     try {
-        const dbGame = await Videogame.findOne({where: {id: idVideogames},
+        const dbGame = await Videogame.findOne({where: {id: id},
         include: {
             model: Genres,
             attributes: ['name'],

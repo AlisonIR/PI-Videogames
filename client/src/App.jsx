@@ -5,6 +5,7 @@ import Home from './Componentes/Home/Home'
 import FormPage from './Componentes/FormPage/FormPage'
 import Detail from './Componentes/Detail/Detail'
 
+
 const App = () => {
 
 //useState de array para almacenar videojuegos de la API y BD
@@ -24,7 +25,8 @@ const App = () => {
       <Route path='/' element={<LandingPage/>}/>
       <Route path='/videogames' element={<Home/>}/>
       <Route path='/form' element={<FormPage/>}/>
-      <Route path='/detail' element={<Detail/>}/>
+      <Route path='/detail/:id' element={<Detail/>}/>
+  
       
     </Routes>
     </div>

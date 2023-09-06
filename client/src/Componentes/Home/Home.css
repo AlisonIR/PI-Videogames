@@ -1,0 +1,4 @@
+.home-container{
+    background-image: url('./../../../public/loading.jpg');
+    background-size: cover;
+}

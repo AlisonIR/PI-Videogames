@@ -2,7 +2,7 @@ require('dotenv').config()
 const axios = require('axios')
 const URL = "https://api.rawg.io/api/genres"
 const {API_KEY} = process.env
-const {Genres} = require('../models/Genres')
+const {Genres} = require('../db')
 //Revisar imports
 
 const getAllGenre = async (req, res) => {

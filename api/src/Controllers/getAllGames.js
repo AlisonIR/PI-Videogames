@@ -14,12 +14,14 @@ const getAllGames = async (req, res) => {
 
    //Filtro para buscar por nombre un videojuego
    if(name){
-      let gameName = await gamesList.filter(vg => vg.name.toLowerCase().includes(name.toLowerCase()));
-      gameName.length ? res.status(200).send(gameName) : res.status(200).send(gamesList)
-      
+      let gameName = gamesList.filter(vg => vg.name.toLowerCase().includes(name.toLowerCase()));
+      gameName.length ? res.status(200).send(gameName) : res.status(404).send('Game not found!')
    }
- }
-
+ else{
+   res.status(200).send(gamesList)
+   
+   }
+}
 
 
 module.exports = {getAllGames}

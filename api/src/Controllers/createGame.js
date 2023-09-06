@@ -1,7 +1,7 @@
-const {Videogame} = require('../models/Videogame')
-const {Genres} = require('../models/Genres')
+const {Videogame, Genres} = require('../db')
 
-const createGame = async (name, description, releaseDate, rating, platforms, image, genreName) => {
+
+const createGame = async (name, description, releaseDate, rating, platforms, img, genreName) => {
  
     const createdGame = await Videogame.findOne({where: {name}});
     if(createdGame) {
@@ -14,7 +14,7 @@ const createGame = async (name, description, releaseDate, rating, platforms, ima
     releaseDate,
     rating,
     platforms,
-    image
+    img
  })
 
  if(genreName?.length > 0){

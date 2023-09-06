@@ -5,7 +5,7 @@ import '../FormPage/Form.css'
 const FormPage = () => {
   return (
   //Falta agregar varios generos en simultaneo
-  <section>
+  <section className='form-section'>
     <div className='form-box'>
       <div className='form-value'>
         <form>
