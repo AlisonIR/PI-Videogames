@@ -1,10 +1,13 @@
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER, FILTERED_GENRES} from "./action-types"
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER, FILTERED_GENRES, SET_CURRENT_PAGE} from "./action-types"
 
 const initialState = {
     allGames: [], //this state is filled with all videogames
     allGamesCopy: [],
     gameById: [],
     allGenres: [],
+    //allGamesApi: [],
+    currentPage: 1,
+    itemsPerPage: 15,
     
 }
 
@@ -80,6 +83,13 @@ const reducer = (state = initialState, action) => {
             ...state,
             allGames: filteredArr
           }
+        }
+
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.payload
+            }
         }
 
         default:

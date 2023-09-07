@@ -1,6 +1,6 @@
 
 import { getAllGames, getById, getAllGenres, getAllNames } from '../utils/apiFunction';
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,FILTERED_GENRES
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,FILTERED_GENRES,SET_CURRENT_PAGE
  } from './action-types';
 
 export const setAllGames = () => { //en el comp llamar a esta funcion
@@ -81,5 +81,10 @@ export const filterByGenre = (genres) => {
         payload: genres
     }
 }
+
+export const setCurrentPage = (page) => ({
+    type: SET_CURRENT_PAGE,
+    payload: page,
+})
 
 
