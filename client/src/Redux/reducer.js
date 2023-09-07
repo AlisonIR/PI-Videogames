@@ -1,8 +1,8 @@
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER} from "./action-types"
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER, FILTERED_GENRES} from "./action-types"
 
 const initialState = {
     allGames: [], //this state is filled with all videogames
-    filteredAllGames: [],
+    allGamesCopy: [],
     gameById: [],
     allGenres: [],
     
@@ -10,13 +10,15 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
      switch(action.type){
+      
         case GET_ALL_GAMES: {
             return{
                 ...state,
                 allGames: action.payload,
-                filteredAllGames: action.payload
+                allGamesCopy: action.payload
                 
             }
+          
         }
 
         case GET_BY_ID: {
@@ -32,6 +34,7 @@ const reducer = (state = initialState, action) => {
                 allGenres: action.payload
             }
         }
+        
         case GET_ALL_NAMES: {
            
             return{
@@ -69,6 +72,14 @@ const reducer = (state = initialState, action) => {
             ? filtered.sort((a,b) => a.id - b.id)
             : filtered.sort((a,b) => b.id - a.id)
         }
+        }
+
+        case FILTERED_GENRES: {
+        const filteredArr = state.allGamesCopy.filter((elem) => elem.genres?.includes(action.payload))
+        return{
+            ...state,
+            allGames: filteredArr
+          }
         }
 
         default:

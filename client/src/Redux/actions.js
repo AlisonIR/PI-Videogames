@@ -1,6 +1,6 @@
 
 import { getAllGames, getById, getAllGenres, getAllNames } from '../utils/apiFunction';
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,FILTERED_GENRES
  } from './action-types';
 
 export const setAllGames = () => { //en el comp llamar a esta funcion
@@ -35,6 +35,7 @@ export const setByGenres = () => {
     return async (dispatch) => {
         try {
             const genres = await getAllGenres();
+            console.log(genres)
             return dispatch({
                 type: GET_BY_GENRE,
                 payload: genres,
@@ -71,6 +72,14 @@ export const orderCards = (order) => {
     return {
         type: FILTERED_ORDER,
         payload: order}
+}
+
+export const filterByGenre = (genres) => {
+    console.log(genres)
+    return {
+        type: FILTERED_GENRES,
+        payload: genres
+    }
 }
 
 

@@ -1,46 +1,57 @@
-import {React, useEffect} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import { setGameById } from '../../Redux/actions'
-import { useParams } from 'react-router-dom'
-import Loading from '../Loading/Loading'
-import '../Detail/Detail.css'
-
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setGameById } from '../../Redux/actions';
+import { useParams } from 'react-router-dom';
+import Loading from '../Loading/Loading';
+import '../Detail/Detail.css';
 
 const Detail = () => {
-  const dispatch = useDispatch()
-  const idResponse = useSelector((state) => state.gameById)
-  console.log(idResponse)
-  const {id} = useParams()
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-  useEffect(()=> {
-    dispatch(setGameById(id))
-   },[])
+  const game = useSelector((state) => state.gameById);
+  const isLoading = useSelector((state) => state.isLoading);
+  const error = useSelector((state) => state.error);
+
+  useEffect(() => {
+    dispatch(setGameById(id));
+  }, [id, dispatch]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  // Verifica si game.parent_platforms está definido antes de mapearlo
+  const platformNames = game.parent_platforms ? game.parent_platforms.map((platform) => platform.platform.name).join(', ') : '';
 
   return (
     <section className='detail-section'>
-      {
-        idResponse.id ?
-       <div className='detail-container'>
-        <div className='detail-box'>
-       
-        <img className='detail-image' src={idResponse.background_image}></img>
-       
-        <h2>{idResponse.genres.name}</h2>
-        
-        <div className='titles'>
-        <h1>{idResponse.name}</h1> 
-        <h2>{idResponse.released}, rating: {idResponse.rating} </h2>
+      {game.id && (
+        <div className='detail-container'>
+          <div className='detail-box'>
+            <img className='detail-image' src={game.background_image} alt={game.name} />
+            <h2>{game.genres && game.genres.map((genre) => genre.name).join(', ')}</h2>
+            <div className='titles'>
+              <h1>{game.name}</h1>
+              <h2>{game.released}, rating: {game.rating}</h2>
+            </div>
+            <h2>ID: {game.id}</h2>
+            <p className='detail-description'>{game.description_raw}</p>
+            {/* Mostrar los nombres de las plataformas */}
+            <h2>Plataformas: {platformNames}</h2>
+          </div>
         </div>
-        
-   
-        <p className='detail-description'>{idResponse.description_raw}</p>
-
-        </div>
-      </div>
-        : <Loading/> //Crear componente loading
-      }
+      )}
     </section>
-  )
-}
+  );
+};
 
-export default Detail
+export default Detail;
+
+
+
+

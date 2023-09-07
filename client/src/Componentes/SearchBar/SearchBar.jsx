@@ -1,31 +1,29 @@
 import {React, useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { Link } from 'react-router-dom'
-import { setByGenres, setOrder, setGameByName, orderCards} from '../../Redux/actions'
+import { setByGenres, setOrder, setGameByName, orderCards, filterByGenre} from '../../Redux/actions'
 
 
 const SearchBar = () => {
 
-const dispatch = useDispatch()
-
 const [gameName, setGameName] = useState('')
 const [order, setLocalOrder] = useState('')
 const [aux, setAux] = useState(false);
-
-
+const [filterGenres, setFilterGenres] = useState('')
+const dispatch = useDispatch()
 const genresResponse = useSelector((state) => state.allGenres)
 const orderChosen = useSelector((state) => state.allGames)
+
 
 
 useEffect(()=> {
   dispatch(setByGenres())
   dispatch(setOrder(orderChosen))
+
  
  },[])
 
  useEffect(() => {
   setLocalOrder(orderChosen)
-
  },[orderChosen])
 
  const inputHandler = (e) => {
@@ -48,16 +46,24 @@ useEffect(()=> {
   setAux(!aux)
 };
 
+const handleFilterGenres = (e) => {
+ setFilterGenres(e.target.value)
+ dispatch(filterByGenre(e.target.value))
+
+}
+
+const handleReset = () => {
+  dispatch(setGameByName(''))
+}
+
   return (
   <div>
-      <Link to={'/form'}>
-      <button>Create Game</button>
-      </Link>
-
-       <select>
+    
+       <select onChange={handleFilterGenres} value={filterGenres}>
+       <option value='AllGenres'>Genres</option>
        { genresResponse.map((genre) => {
           return(
-              <option value="Genres">{genre.name}</option>
+              <option value={genre.name}>{genre.name}</option>
           )
         })}
         </select>
@@ -82,6 +88,8 @@ useEffect(()=> {
         <option value="API">API</option>
         <option value="BD">Created</option>
       </select>
+
+      <button onClick={handleReset}>Reset</button>
    
   </div>
   )
