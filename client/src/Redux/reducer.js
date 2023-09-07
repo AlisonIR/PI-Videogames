@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_GENRES } from "./action-types"
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER} from "./action-types"
 
 const initialState = {
     allGames: [], //this state is filled with all videogames
@@ -61,13 +61,13 @@ const reducer = (state = initialState, action) => {
             
         }
     }
-        case FILTERED_GENRES: {
-        const filteredGenres = [...state.allGames]
+        case FILTERED_ORDER: {
+        const filtered = [...state.allGames]
         return{
             ...state,
             allGames: action.payload === "A"
-            ? filteredGenres.sort((a,b) => a.id - b.id)
-            : filteredGenres.sort((a,b) => b.id - a.id)
+            ? filtered.sort((a,b) => a.id - b.id)
+            : filtered.sort((a,b) => b.id - a.id)
         }
         }
 

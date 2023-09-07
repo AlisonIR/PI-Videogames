@@ -1,15 +1,18 @@
 import {React, useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { setByGenres, setOrder, setGameByName, orderCards } from '../../Redux/actions'
+import { setByGenres, setOrder, setGameByName, orderCards} from '../../Redux/actions'
 
 
 const SearchBar = () => {
 
+const dispatch = useDispatch()
+
 const [gameName, setGameName] = useState('')
 const [order, setLocalOrder] = useState('')
 const [aux, setAux] = useState(false);
-const dispatch = useDispatch()
+
+
 const genresResponse = useSelector((state) => state.allGenres)
 const orderChosen = useSelector((state) => state.allGames)
 
@@ -17,10 +20,12 @@ const orderChosen = useSelector((state) => state.allGames)
 useEffect(()=> {
   dispatch(setByGenres())
   dispatch(setOrder(orderChosen))
+ 
  },[])
 
  useEffect(() => {
   setLocalOrder(orderChosen)
+
  },[orderChosen])
 
  const inputHandler = (e) => {
@@ -38,11 +43,10 @@ useEffect(()=> {
 
  }
 
- const handleOrder = (event)=>{
-  dispatch(orderCards(event.target.value));
+ const handleOrder = (e)=>{
+  dispatch(orderCards(e.target.value));
   setAux(!aux)
 };
-
 
   return (
   <div>
@@ -67,9 +71,8 @@ useEffect(()=> {
           (<option value={order}>{order}</option>)
         )}
       </select>
-      {/* no renderiza los best rated y least reated pero si los ordena.* */}
-    
 
+      
       <select onChange={handleOrder}>
       <option value="A">Ascendente</option>
       <option value="D">Desendente</option>
