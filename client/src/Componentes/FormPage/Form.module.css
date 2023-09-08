@@ -4,7 +4,7 @@
     font-family: 'poppins', sans-serif;
 }
 
-.form-section{
+.formsection{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,7 @@
 
 }
 
-.form-box{
+.formbox{
     position: relative;
     left: 20%;
     width: 500px;

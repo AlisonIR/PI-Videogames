@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setAllGames, setCurrentPage } from '../../Redux/actions';
 import Card from '../Card/Card';
 import Loading from '../Loading/Loading';
-import '../Cards/Cards.css'
+import style from'./Cards.module.css'
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Cards = () => {
   };
 
   return (
-    <div className='container-two'>
+    <div className={style.containertwo}>
       {currentGames.length > 0 ? (
         currentGames.map((game) => (
           <Card
@@ -39,18 +39,18 @@ const Cards = () => {
         <Loading />
       )}
 
-      <div className="pagination">
+      <div className={style.pagination}>
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className='pagination-btn'
+          className={style.paginationbtn}
         >
           Previous
         </button>
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentGames.length < itemsPerPage}
-          className='pagination-btn'
+          className={style.paginationbtn}
         >
           Next
         </button>

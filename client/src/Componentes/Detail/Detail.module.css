@@ -4,7 +4,7 @@
     font-family: 'poppins', sans-serif;
 }
 
-.detail-section{
+.detailsection{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,7 @@
     background-size: cover;
 }
 
-.detail-container{
+.detailcontainer{
     position: relative;
     left: 20%;
     width: 500px;
@@ -29,14 +29,14 @@
    
 }
 
-.detail-image{
+.detailimage{
     width: 100%;
     height: 100%;
     margin-top: -2%;
     
 }
 
-.detail-description{
+.detaildescription{
   font-size: 13px;
   font-weight: 500;
 }

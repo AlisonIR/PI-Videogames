@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Card = ({ id, name, img }) => {
   return (
+  <div className="grid">
     <div className="card-container">
     <div className="card">
       <div className="wrapper">
@@ -12,6 +13,7 @@ const Card = ({ id, name, img }) => {
           <img className="cover-image" src={img}></img>
         </Link>
       </div>
+    </div>
     </div>
     </div>
   );
