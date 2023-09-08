@@ -1,6 +1,6 @@
 
 import { getAllGames, getById, getAllGenres, getAllNames } from '../utils/apiFunction';
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,FILTERED_GENRES,SET_CURRENT_PAGE
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,FILTERED_GENRES,SET_CURRENT_PAGE, GAMES_ORIGIN
  } from './action-types';
 
 export const setAllGames = () => { //en el comp llamar a esta funcion
@@ -87,4 +87,10 @@ export const setCurrentPage = (page) => ({
     payload: page,
 })
 
+export const gamesOrigin = (order) => {
+    return {
+        type: GAMES_ORIGIN,
+        payload: order
+    }
+}
 

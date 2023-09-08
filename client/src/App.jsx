@@ -6,19 +6,8 @@ import FormPage from "./Componentes/FormPage/FormPage";
 import Detail from "./Componentes/Detail/Detail";
 import NavBar from "./Componentes/NavBar/NavBar";
 
-
 const App = () => {
-  //useState de array para almacenar videojuegos de la API y BD
-
-  //Mostrar 15 por pagina hasta llegar a 100
-
-  //Funcion que haga peticion para traer los videojuegos de API Y BD
-
-  //Componente Home
-  //Debe renderizar la searchBar(esta en home), la info debe ir por props a ese componente
-  //Debe renderizar las cards
-  //Debe renderizar el paginado
-const location = useLocation()
+  const location = useLocation();
   return (
     <div>
       {location.pathname !== "/" && <NavBar />}

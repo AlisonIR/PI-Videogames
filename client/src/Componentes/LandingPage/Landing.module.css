@@ -11,7 +11,7 @@
     background-size: cover;
 }
 
-.enter-btn{
+.enterbtn{
     position: absolute;
     top: 50%;
     left: 55%;
@@ -26,15 +26,15 @@
     font-size: 16px;
 }
 
-.enter-btn:hover{
+.enterbtn:hover{
     background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
     box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
 
-.title{
+.titulo{
     position: absolute;
     top: 35%;
-    left: 52%;
+    left: 50%;
     font-size: 4rem;
     text-align: center;
     color: white;

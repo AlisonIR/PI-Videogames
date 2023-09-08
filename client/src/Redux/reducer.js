@@ -1,11 +1,10 @@
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER, FILTERED_GENRES, SET_CURRENT_PAGE} from "./action-types"
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER, FILTERED_GENRES, SET_CURRENT_PAGE, GAMES_ORIGIN} from "./action-types"
 
 const initialState = {
     allGames: [], //this state is filled with all videogames
     allGamesCopy: [],
     gameById: [],
     allGenres: [],
-    //allGamesApi: [],
     currentPage: 1,
     itemsPerPage: 15,
     
@@ -90,6 +89,32 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 currentPage: action.payload
             }
+        }
+
+        case GAMES_ORIGIN : {
+            let originGames = [...state.allGames]
+            if(action.payload === 'All'){
+                return {
+                    ...state,
+                    allGamesCopy: [...state.allGames]
+                }
+            }
+            if(action.payload === 'api') {
+                const apiGames = originGames.filter((game) => Number(game.id))
+
+                return{
+                    ...state,
+                    allGamesCopy: apiGames
+                }
+            }
+
+             if(action.payload === 'db'){
+                const dbGames = originGames.filter((game) => typeof game.id === 'string')
+                return{
+                    ...state,
+                    allGamesCopy: dbGames
+                }
+           }
         }
 
         default:

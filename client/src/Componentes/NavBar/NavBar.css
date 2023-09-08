@@ -1,7 +1,7 @@
 .nav-container{
-    background-color: #D5DBDB ;
+    background: rgba(0,0,0,0.2);
     width: 100%;
-    height: 35px;
+    height: 30%;
     padding-top: 15px;
     padding-bottom: 20px;
     display: flex;

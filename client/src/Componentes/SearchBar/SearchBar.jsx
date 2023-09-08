@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { setByGenres, setOrder, setGameByName, orderCards, filterByGenre} from '../../Redux/actions'
+import { setByGenres, setOrder, setGameByName, orderCards, filterByGenre, gamesOrigin} from '../../Redux/actions'
 
 
 const SearchBar = () => {
@@ -52,15 +52,27 @@ const handleFilterGenres = (e) => {
 
 }
 
+
+//Function that resets all filters
 const handleReset = () => {
   dispatch(setGameByName(''))
+  dispatch(setFilterGenres(''))
+  dispatch(orderCards(''))
+  dispatch(setOrder(''))
+
+}
+
+const filterOrigin = (e) => {
+  const { value } = e.target;
+  dispatch(gamesOrigin(value))
+  
 }
 
   return (
   <div>
     
        <select onChange={handleFilterGenres} value={filterGenres}>
-       <option value='AllGenres'>Genres</option>
+       
        { genresResponse.map((genre) => {
           return(
               <option value={genre.name}>{genre.name}</option>
@@ -73,8 +85,9 @@ const handleReset = () => {
       <button onClick={handleSubmit}>Search</button>
   
       <select value={order} onChange={handleSort}>
+   
         {['Select order', 'A-Z', 'Z-A', 'Best rated', 'Least rated'].map((order) => 
-          (<option value={order}>{order}</option>)
+          (<option value={order} >{order}</option>)
         )}
       </select>
 
@@ -84,10 +97,13 @@ const handleReset = () => {
       <option value="D">Desendente</option>
       </select>
 
-      <select>
-        <option value="API">API</option>
-        <option value="BD">Created</option>
-      </select>
+      <select name='Origen' onChange={filterOrigin}>
+          <optgroup label="Origen">
+            <option value='All'>All</option>
+            <option value='api'>API</option>
+            <option value='db'>DB</option>
+          </optgroup>
+        </select>
 
       <button onClick={handleReset}>Reset</button>
    
