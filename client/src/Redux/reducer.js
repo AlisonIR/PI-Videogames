@@ -1,10 +1,11 @@
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER, FILTERED_GENRES, SET_CURRENT_PAGE, GAMES_ORIGIN} from "./action-types"
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER, FILTERED_GENRES, SET_CURRENT_PAGE, GAMES_ORIGIN, POST_GAMES} from "./action-types"
 
 const initialState = {
     allGames: [], //this state is filled with all videogames
     allGamesCopy: [],
     gameById: [],
     allGenres: [],
+    videogames: [],
     currentPage: 1,
     itemsPerPage: 15,
     
@@ -100,7 +101,8 @@ const reducer = (state = initialState, action) => {
                 }
             }
             if(action.payload === 'api') {
-                const apiGames = originGames.filter((game) => Number(game.id))
+                const apiGames = originGames.filter((game) => Number.isInteger(game.id))
+                console.log(apiGames)
 
                 return{
                     ...state,
@@ -108,13 +110,24 @@ const reducer = (state = initialState, action) => {
                 }
             }
 
-             if(action.payload === 'db'){
-                const dbGames = originGames.filter((game) => typeof game.id === 'string')
-                return{
-                    ...state,
-                    allGamesCopy: dbGames
-                }
-           }
+            if (action.payload === 'db') {
+                const uuidv4Pattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+                
+                const dbGames = originGames.filter((game) => uuidv4Pattern.test(game.id));
+                console.log(dbGames)
+                
+                return {
+                  ...state,
+                  allGamesCopy: dbGames,
+                };
+              }
+        }
+
+        case POST_GAMES: {
+            return {
+              ...state,
+              videogames: [...state.videogames, action.payload],
+            };
         }
 
         default:

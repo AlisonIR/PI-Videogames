@@ -1,6 +1,6 @@
 
 import { getAllGames, getById, getAllGenres, getAllNames } from '../utils/apiFunction';
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,FILTERED_GENRES,SET_CURRENT_PAGE, GAMES_ORIGIN
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,FILTERED_GENRES,SET_CURRENT_PAGE, GAMES_ORIGIN, POST_GAMES
  } from './action-types';
 
 export const setAllGames = () => { //en el comp llamar a esta funcion
@@ -92,5 +92,20 @@ export const gamesOrigin = (order) => {
         type: GAMES_ORIGIN,
         payload: order
     }
+}
+
+export const postGame = (form) => {
+    return async (dispatch) =>{
+        try {
+            const newGame = await postVideogame(form);
+        
+            return dispatch({
+                type: POST_GAMES,
+                payload: newGame,
+            })
+        } catch (error) {
+            console.log('server error!');
+        }
+    };
 }
 

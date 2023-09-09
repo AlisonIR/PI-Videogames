@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4
     },
     name:{
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       
     },
@@ -22,18 +22,20 @@ module.exports = (sequelize) => {
       allowNull: false
 
     },
+
     platforms: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.STRING,
       allowNull: false
     },
+
     img:{
       type: DataTypes.TEXT,
       allowNull: false
     },
 
-    releasedate:{
+    releaseDate:{
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
 
     },
 
