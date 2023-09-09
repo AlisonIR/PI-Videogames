@@ -1,24 +1,17 @@
-.nav{
-    display: flex;
-    justify-content: flex-end;
-
-
-
+.searchcontainer {
+margin-left: 20px;
+margin-top:10px ;
 }
 
-.select {
-    flex: 1;
-    margin-right: 10px;
-}
-
-.filter{
+.inputsearch{
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    
 }
 
-.handlebtn{
+.searchbtn{
     margin-top: 5px;
     padding: 8px;
     background: rgba(0,0,0,0.0);

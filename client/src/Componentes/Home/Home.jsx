@@ -52,7 +52,7 @@ const Home = () => {
     dispatch(setGameByName(""));
     dispatch(setFilterGenres(""));
     dispatch(orderCards(""));
-    dispatch(setOrder(""));
+    dispatch(setOrder("")); //agregar que vuelva a la pagina uno
   };
 
   const filterOrigin = (e) => {  
@@ -68,13 +68,13 @@ const Home = () => {
         </div>
 
         <div className={style.select}>                                                                               
-          <select onChange={handleFilterGenres} value={filterGenres}>
+          <select className={style.filter} onChange={handleFilterGenres} value={filterGenres}>
             {genresResponse.map((genre) => {
               return <option value={genre.name}>{genre.name}</option>;
             })}
           </select>
 
-          <select value={order} onChange={handleSort}>
+          <select className={style.filter} value={order} onChange={handleSort}>
             {["Select order", "A-Z", "Z-A", "Best rated", "Least rated"].map(
               (order) => (
                 <option value={order}>{order}</option>
@@ -82,12 +82,12 @@ const Home = () => {
             )}
           </select>
 
-          <select onChange={handleOrder}>
+          <select className={style.filter} onChange={handleOrder}>
             <option value="A">Ascendente</option>
             <option value="D">Desendente</option>
           </select>
 
-          <select name="Origin" onChange={filterOrigin}>
+          <select className={style.filter} name="Origin" onChange={filterOrigin}>
             <optgroup label="Origin">
               <option value="api">API</option>
               <option value="db">DB</option>
