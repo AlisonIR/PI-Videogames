@@ -38,7 +38,7 @@ const Detail = () => {
       {game.id && (
         <div className={style.detailcontainer}>
           <div className={style.detailbox}>
-            <img className={style.detailimage} src={game.background_image} alt={game.name} />
+            <img className={style.detailimage} src={game.img} alt={game.name} />
             <h2>{game.genres && game.genres.map((genre) => genre.name).join(', ')}</h2>
             <div className={style.titles}>
               <h1>{game.name}</h1>

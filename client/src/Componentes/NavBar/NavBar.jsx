@@ -13,7 +13,8 @@ export default function NavBar (){
           
           
             <Link to={"/videogames"}>
-                <button className={style.navButtons}>Home</button>
+                <button className={style.navButtons}>Home
+                </button>
             </Link>
             <Link to={"/form"}>
                 <button className={style.navButtons}>Create Game</button>

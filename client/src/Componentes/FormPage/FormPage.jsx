@@ -209,13 +209,13 @@ function Create() {
           {errors.rating && <span>{errors.rating}</span>}
         </div>
 
-       {/* <div className={style.inputbox}>
+        <div >
           {allGenres?.map((genre) => (
             <span key={genre.id}>{genre.name}
               <input type="checkbox" name="genres" value={genre.id} onChange={changeHandler}/>
             </span>
           ))}
-          </div>*/}
+          </div>
 
         <button className={style.submit} type="submit"
           disabled={
