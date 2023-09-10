@@ -55,7 +55,7 @@ const Home = () => {
     dispatch(setOrder("")); //agregar que vuelva a la pagina uno
   };
 
-  const filterOrigin = (e) => {  
+  const filterOrigin = (e) => {
     const { value } = e.target;
     dispatch(gamesOrigin(value));
   };
@@ -67,7 +67,7 @@ const Home = () => {
           <SearchBar />
         </div>
 
-        <div className={style.select}>                                                                               
+        <div className={style.select}>
           <select className={style.filter} onChange={handleFilterGenres} value={filterGenres}>
             {genresResponse.map((genre) => {
               return <option value={genre.name}>{genre.name}</option>;
@@ -76,8 +76,10 @@ const Home = () => {
 
           <select className={style.filter} value={order} onChange={handleSort}>
             {["Select order", "A-Z", "Z-A", "Best rated", "Least rated"].map(
-              (order) => (
-                <option value={order}>{order}</option>
+              (orderItem, index) => (
+                <option key={index} value={orderItem}>
+                  {orderItem}
+                </option>
               )
             )}
           </select>
@@ -88,16 +90,16 @@ const Home = () => {
           </select>
 
           <select className={style.filter} name="Origin" onChange={filterOrigin}>
-            <optgroup label="Origin">
-              <option value="api">API</option>
-              <option value="db">DB</option>
-            </optgroup>
+            <optgroup key="origin" label="Origin">
+            <option value="api">API</option>
+            <option value="db">DB</option>
+           </optgroup>
           </select>
 
           <button className={style.handlebtn} onClick={handleReset}>
             Reset
           </button>
-        </div>            
+        </div>
       </div>
 
       <Cards />

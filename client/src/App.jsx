@@ -9,7 +9,7 @@ import NavBar from "./Componentes/NavBar/NavBar";
 const App = () => {
   const location = useLocation();
   return (
-    <div>
+    <div className="appjs">
       {location.pathname !== "/" && <NavBar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />

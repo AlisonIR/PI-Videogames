@@ -25,16 +25,21 @@ const Cards = () => {
   };
 
   return (
-    <div className={style.containertwo}>
-      {currentGames.length > 0 ? (
-        currentGames.map((game) => (
-          <Card
-            key={game?.id}
-            id={game?.id}
-            name={game?.name}
-            img={game?.img}
-          />
-        ))
+    <div className={style.container}>
+     {currentGames.length > 0 ? (
+        <div
+          className={style.cardsContainer}
+       
+        >
+          {currentGames.map((game) => (
+            <Card
+              key={game?.id}
+              id={game?.id}
+              name={game?.name}
+              img={game?.img}
+            />
+          ))}
+        </div>
       ) : (
         <Loading />
       )}

@@ -7,5 +7,5 @@ export const FILTERED_ORDER = 'FILTERED_ORDER'
 export const FILTERED_GENRES = 'FILTERED_GENRES'
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 export const GAMES_ORIGIN = 'GAMES_ORIGIN'
-export const POST_GAMES = 'POST_GAMES'
+export const POST_GAME = 'POST_GAME'
 

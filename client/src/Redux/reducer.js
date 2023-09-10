@@ -1,4 +1,4 @@
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER, FILTERED_GENRES, SET_CURRENT_PAGE, GAMES_ORIGIN, POST_GAMES} from "./action-types"
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER, FILTERED_GENRES, SET_CURRENT_PAGE, GAMES_ORIGIN, POST_GAME} from "./action-types"
 
 const initialState = {
     allGames: [], //this state is filled with all videogames
@@ -93,20 +93,20 @@ const reducer = (state = initialState, action) => {
         }
 
         case GAMES_ORIGIN : {
-            let originGames = [...state.allGames]
+            let originGames = [...state.allGamesCopy]
             if(action.payload === 'All'){
                 return {
                     ...state,
-                    allGamesCopy: [...state.allGames]
+                    allGames: [...state.allGamesCopy]
                 }
             }
             if(action.payload === 'api') {
                 const apiGames = originGames.filter((game) => Number.isInteger(game.id))
-                console.log(apiGames)
+                
 
                 return{
                     ...state,
-                    allGamesCopy: apiGames
+                    allGames: apiGames
                 }
             }
 
@@ -114,16 +114,17 @@ const reducer = (state = initialState, action) => {
                 const uuidv4Pattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
                 
                 const dbGames = originGames.filter((game) => uuidv4Pattern.test(game.id));
-                console.log(dbGames)
+               
                 
                 return {
                   ...state,
-                  allGamesCopy: dbGames,
+                  allGames: dbGames,
                 };
               }
         }
+    
 
-        case POST_GAMES: {
+        case POST_GAME: {
             return {
               ...state,
               videogames: [...state.videogames, action.payload],

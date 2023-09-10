@@ -1,6 +1,6 @@
 
-import { getAllGames, getById, getAllGenres, getAllNames } from '../utils/apiFunction';
-import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,FILTERED_GENRES,SET_CURRENT_PAGE, GAMES_ORIGIN, POST_GAMES
+import { getAllGames, getById, getAllGenres, getAllNames, postVideogame } from '../utils/apiFunction';
+import { GET_ALL_GAMES, GET_BY_ID, GET_BY_GENRE, GET_ALL_NAMES, ALPHABETICAL_ORDER, FILTERED_ORDER,FILTERED_GENRES,SET_CURRENT_PAGE, GAMES_ORIGIN, POST_GAME
  } from './action-types';
 
 export const setAllGames = () => { //en el comp llamar a esta funcion
@@ -19,12 +19,19 @@ export const setAllGames = () => { //en el comp llamar a esta funcion
 
 export const setGameById = (id) => {
     return async (dispatch) => {
-        try {
+        try{
+            if(id === "reset"){ // para limpiar el payload del detail
+                return dispatch({
+                    type: GET_BY_ID,
+                    payload: {},
+            })
+
+        } else{
             const gamesbyID = await getById(id);
             return dispatch({
                 type: GET_BY_ID,
                 payload: gamesbyID,
-            });
+            })}
         } catch (error) {
             console.log('Server error');
         }
@@ -35,7 +42,6 @@ export const setByGenres = () => {
     return async (dispatch) => {
         try {
             const genres = await getAllGenres();
-            console.log(genres)
             return dispatch({
                 type: GET_BY_GENRE,
                 payload: genres,
@@ -50,7 +56,6 @@ export const setGameByName = (name) => {
     return async (dispatch) => {
         try {
             const names = await getAllNames(name);
-            console.log(name)
             return dispatch({
                 type: GET_ALL_NAMES,
                 payload: names,
@@ -62,36 +67,49 @@ export const setGameByName = (name) => {
 };
 
 export const setOrder = (order) => {
-        return{
+    return async(dispatch) => {
+        return dispatch({
           type: ALPHABETICAL_ORDER,
           payload: order,
-        }      
+        })   
+    } 
     };
 
 export const orderCards = (order) => {
-    return {
+    return async(dispatch) => {
+    return dispatch({
         type: FILTERED_ORDER,
-        payload: order}
+        payload: order})
+    }
 }
 
 export const filterByGenre = (genres) => {
-    console.log(genres)
-    return {
+    return async(dispatch) => {
+    return dispatch({
         type: FILTERED_GENRES,
         payload: genres
-    }
+    })
+}
 }
 
-export const setCurrentPage = (page) => ({
-    type: SET_CURRENT_PAGE,
-    payload: page,
-})
+export const setCurrentPage = (page) => {
+    return async (dispatch) => {
+       return dispatch({
+        type: SET_CURRENT_PAGE,
+        payload: page,
+       })
+    }
+}
+    
+
 
 export const gamesOrigin = (order) => {
-    return {
+    return async (dispatch) => {
+    return dispatch ({
         type: GAMES_ORIGIN,
         payload: order
-    }
+    })
+}
 }
 
 export const postGame = (form) => {
@@ -100,7 +118,7 @@ export const postGame = (form) => {
             const newGame = await postVideogame(form);
         
             return dispatch({
-                type: POST_GAMES,
+                type: POST_GAME,
                 payload: newGame,
             })
         } catch (error) {
