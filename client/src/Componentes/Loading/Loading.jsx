@@ -3,9 +3,9 @@ import style from './Loading.module.css'
 
 const Loading = () => {
   return (
-    <div class={style.container}>
-    <div class={style.space}>
-      <div class={style.loading}></div>
+    <div className={style.container}>
+    <div className={style.space}>
+      <div className={style.loading}></div>
     </div>
   </div>
   )

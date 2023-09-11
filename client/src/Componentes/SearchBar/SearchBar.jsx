@@ -4,7 +4,7 @@ import { setGameByName } from "../../Redux/actions";
 import style from'./SearchBar.module.css'
 
 const SearchBar = () => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch()
 
   const [gameName, setGameName] = useState("");
 

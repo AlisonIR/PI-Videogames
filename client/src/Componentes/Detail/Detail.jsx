@@ -37,8 +37,8 @@ const Detail = () => {
         <div className={style.detailcontainer}>
           <div className={style.detailbox}>
 
-            <div className={style.image}>
-            <img className={style.detailimage} src={game.img} alt={game.name} />
+            <div className={style.imageContainer}>
+              <img className={style.image} src={game.img} alt={game.name} />
             </div>
           
             <div className={style.title}>
@@ -46,7 +46,7 @@ const Detail = () => {
             </div>
 
             <div className={style.rating}>
-            <h2>rating: {game.rating} released: {game.released}</h2>
+            <h2>rating: {game.rating} released: {game.releaseDate}</h2>
             </div>
             
             <div className={style.genres}>
@@ -58,7 +58,7 @@ const Detail = () => {
             </div>
 
             <div className={style.description}>
-            <p className={style.detaildescription}>{game.description_raw}</p>
+            <p className={style.detaildescription}>{game.description}</p>
             </div>
 
             
