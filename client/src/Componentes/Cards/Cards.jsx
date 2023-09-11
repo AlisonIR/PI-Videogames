@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAllGames, setCurrentPage } from '../../Redux/actions';
 import Card from '../Card/Card';
 import Loading from '../Loading/Loading';
-import style from'./Cards.module.css'
+import style from './Cards.module.css';
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -11,9 +11,16 @@ const Cards = () => {
   const currentPage = useSelector((state) => state.currentPage);
   const itemsPerPage = useSelector((state) => state.itemsPerPage);
 
+  const [isContentLoaded, setIsContentLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(setAllGames());
   }, [dispatch]);
+
+  useEffect(() => {
+    // Verifica si los juegos han cargado y establece el estado correspondiente
+    setIsContentLoaded(gamesResponse.length > 0);
+  }, [gamesResponse]);
 
   // Calcula el rango de juegos que se mostrarán en la página actual
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -26,11 +33,8 @@ const Cards = () => {
 
   return (
     <div className={style.container}>
-     {currentGames.length > 0 ? (
-        <div
-          className={style.cardsContainer}
-       
-        >
+      {isContentLoaded ? (
+        <div className={style.cardsContainer}>
           {currentGames.map((game) => (
             <Card
               key={game?.id}
@@ -44,22 +48,25 @@ const Cards = () => {
         <Loading />
       )}
 
-      <div className={style.pagination}>
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className={style.paginationbtn}
-        >
-          Previous
-        </button>
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentGames.length < itemsPerPage}
-          className={style.paginationbtn}
-        >
-          Next
-        </button>
-      </div>
+      {isContentLoaded && (
+        <div className={style.pagination}>
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={style.paginationbtn}
+          >
+            Previous
+          </button>
+          <h1 className={style.page}>{currentPage}</h1>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentGames.length < itemsPerPage}
+            className={style.paginationbtn}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

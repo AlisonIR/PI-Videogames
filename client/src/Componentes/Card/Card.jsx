@@ -1,20 +1,20 @@
 import React from "react";
-import "../Card/Card.css";
+import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 
 const Card = ({ id, name, img }) => {
   return (
-  <div className="grid">
+  <div className={style.grid}>
 
-    <div className="card-container">
+    <div className={style.cardcontainer}>
 
-    <div className="card">
+    <div className={style.card}>
 
-      <div className="wrapper">
-        <h1 className="title">{name}</h1>
+      <div className={style.wrapper}>
+        <h1 className={style.title}>{name}</h1>
 
         <Link to={`/detail/${id}`}>
-          <img className="cover-image" src={img}></img>
+          <img className={style.coverimage} src={img}></img>
         </Link>
       </div>
       

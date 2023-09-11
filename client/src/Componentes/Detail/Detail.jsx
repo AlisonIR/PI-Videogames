@@ -30,24 +30,42 @@ const Detail = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  // Verifica si game.parent_platforms está definido antes de mapearlo
-
 
   return (
     <section className={style.detailsection}>
       {game.id && (
         <div className={style.detailcontainer}>
           <div className={style.detailbox}>
+
+            <div className={style.image}>
             <img className={style.detailimage} src={game.img} alt={game.name} />
-            <h2>{game.genres && game.genres.map((genre) => genre.name).join(', ')}</h2>
-            <div className={style.titles}>
-              <h1>{game.name}</h1>
-              <h2>{game.released}, rating: {game.rating}</h2>
             </div>
+          
+            <div className={style.title}>
+              <h1>{game.name}</h1>
+            </div>
+
+            <div className={style.rating}>
+            <h2>rating: {game.rating} released: {game.released}</h2>
+            </div>
+            
+            <div className={style.genres}>
+            <h2>{game.genres && game.genres.map((genre) => genre.name).join(', ')}</h2>
+            </div>
+
+            <div className={style.idcontainer}>
             <h2>ID: {game.id}</h2>
+            </div>
+
+            <div className={style.description}>
             <p className={style.detaildescription}>{game.description_raw}</p>
-            {/* Mostrar los nombres de las plataformas */}
-            <h2>Plataformas: {game.platforms}</h2>
+            </div>
+
+            
+            <div className={style.platformcontainer}>
+            <h2>Platforms: {game.platforms}</h2>
+            </div>
+
           </div>
         </div>
       )}

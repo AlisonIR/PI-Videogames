@@ -1,13 +1,9 @@
 
-
-
 .cardsContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     max-width: 100%;
-   
-  
     margin-bottom: 5em;
     background: rgba(255, 255, 255, 0.15);
     border-radius: 16px;
@@ -17,8 +13,7 @@
     border: 10px solid rgba(255, 255, 255, 0.1)
   }
 
-.pagination{
-    
+  .pagination{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,4 +42,11 @@
     background-color: #717D7E ;
     transition: 0.3s;
 
+}
+
+.page{
+    font-size: 26px;
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
 }

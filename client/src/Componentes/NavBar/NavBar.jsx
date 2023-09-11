@@ -12,14 +12,14 @@ export default function NavBar (){
         <div className={style.navcontainer}>
           
           
-            <Link to={"/videogames"}>
+            <Link to={"/videogames"} className={style.link}>
                 <button className={style.navButtons}>Home
                 </button>
             </Link>
-            <Link to={"/form"}>
+            <Link to={"/form"} className={style.link}>
                 <button className={style.navButtons}>Create Game</button>
             </Link>
-            <Link to={"/"}>
+            <Link to={"/"} className={style.link}>
                 <button className={style.navButtons}>Log Out</button>
             </Link>
             {location.pathname === "/home" && <SearchBar />}

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setByGenres, postGame } from "../../Redux/actions";
-import { Link } from "react-router-dom";
 import style from './Form.module.css'
 
 function Create() {
@@ -164,68 +163,112 @@ function Create() {
     event.preventDefault();
       dispatch(postGame(form));
       alert("Created Game!");
+      setForm({
+        name: "",
+        img: "",
+        description: "",
+        platforms: "",
+        releaseDate: "",
+        rating: "",
+        genres: [],
+      });
   
   };
 
   return (
-     <section className={style.formsection}>
-      <div className={style.formbox}>
-        <div className={style.value}>
-         <form onSubmit={submitHandler}>
-
-          <div className={style.inputbox} >
-           <label>Name</label>
-           <input type="text" value={form.name} onChange={changeHandler} name="name" />
-            {errors.name && <span>{errors.name}</span>}
-          </div>
-
-          <div className={style.inputbox}>
-            <label>Image</label>
-            <input type="text" value={form.img} onChange={changeHandler} name="img"/>
-            {errors.img && <span>{errors.img}</span>}
-          </div>
-
-        <div className={style.inputbox}>
-          <label>Description</label>
-          <input type="text" value={form.description} onChange={changeHandler}name="description"/>
-          {errors.description && <span>{errors.description}</span>}
-        </div>
-
-        <div className={style.inputbox}>
-          <label>Platforms</label>
-          <input type="text" value={form.platforms} onChange={changeHandler} name="platforms"/>
-          {errors.platforms && <span>{errors.platforms}</span>}
-        </div>
-
-        <div className={style.inputbox}>
-          <label>ReleaseDate</label>
-          <input type="text" value={form.releaseDate} onChange={changeHandler} name="releaseDate"/>
-          {errors.releaseDate && <span>{errors.releaseDate}</span>}
-        </div>
-
-        <div className={style.inputbox}>
-          <label>Rating</label>
-          <input type="text" value={form.rating} onChange={changeHandler} name="rating"/>
-          {errors.rating && <span>{errors.rating}</span>}
-        </div>
-
-        <div >
-          {allGenres?.map((genre) => (
-            <span key={genre.id}>{genre.name}
-              <input type="checkbox" name="genres" value={genre.id} onChange={changeHandler}/>
-            </span>
-          ))}
-          </div>
-
-        <button className={style.submit} type="submit"
+      <section className={style.formsection}>
+        <div className={style.formbox}>
+          <div className={style.value}>
+            <form onSubmit={submitHandler}>
+              <div className={style.inputbox}>
+                <label>Name</label>
+                <input
+                  type="text"
+                  value={form.name}
+                  onChange={changeHandler}
+                  name="name"
+                />
+                {errors.name && <span>{errors.name}</span>}
+              </div>
+  
+              <div className={style.inputbox}>
+                <label>Image</label>
+                <input
+                  type="text"
+                  value={form.img}
+                  onChange={changeHandler}
+                  name="img"
+                />
+                {errors.img && <span>{errors.img}</span>}
+              </div>
+  
+              <div className={style.inputbox}>
+                <label>Description</label>
+                <input
+                  type="text"
+                  value={form.description}
+                  onChange={changeHandler}
+                  name="description"
+                />
+                {errors.description && <span>{errors.description}</span>}
+              </div>
+  
+              <div className={style.inputbox}>
+                <label>Platforms</label>
+                <input
+                  type="text"
+                  value={form.platforms}
+                  onChange={changeHandler}
+                  name="platforms"
+                />
+                {errors.platforms && <span>{errors.platforms}</span>}
+              </div>
+  
+              <div className={style.inputbox}>
+                <label>ReleaseDate</label>
+                <input
+                  type="text"
+                  value={form.releaseDate}
+                  onChange={changeHandler}
+                  name="releaseDate"
+                />
+                {errors.releaseDate && <span>{errors.releaseDate}</span>}
+              </div>
+  
+              <div className={style.inputbox}>
+                <label>Rating</label>
+                <input
+                  type="text"
+                  value={form.rating}
+                  onChange={changeHandler}
+                  name="rating"
+                />
+                {errors.rating && <span>{errors.rating}</span>}
+              </div>
+  
+              <div className={style.genreContainer}>
+                {allGenres?.map((genre) => (
+                  <div className={style.genreItem} key={genre.id}>
+                    <input
+                      type="checkbox"
+                      name="genres"
+                      value={genre.id}
+                      onChange={changeHandler}
+                    />
+                    <label>{genre.name}</label>
+                  </div>
+                ))}
+              </div>
+  
+              <button className={style.submit} type="submit"
           disabled={
             !Object.values(form).every((value) => value !== "") || hasErrors()
           } >{" "}SUBMIT{" "}
         </button>
-      </form>
-    </div>
-    </div>
-    </section>
+            </form>
+          </div>
+        </div>
+      </section>
   );
 }
 

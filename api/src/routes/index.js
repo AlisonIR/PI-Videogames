@@ -3,11 +3,11 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const { getAllGames } = require('../Controllers/getAllGames')
 const { getGameById } = require('../Controllers/getGameById')
-//const { createGame } = require('../Controllers/createGame')
 const { getByName } = require('../Controllers/getByName')
 const { getAllGenre } = require('../Controllers/getAllGenre')
 const { postGames } = require('../Controllers/postGames')
-//const {mergedGames} = require('../Controllers/mergedGames')
+const { postFav } = require('../Controllers/postFav')
+const { deleteFav } = require('../Controllers/deleteFav')
 
 
 
@@ -21,6 +21,8 @@ const router = Router();
  router.get('/videogames/:id', getGameById)
  router.get('/genres', getAllGenre)
  router.post('/videogames', postGames)
+// router.post("/fav", postFav);
+//router.post("/fav", deleteFav);
 
 
 

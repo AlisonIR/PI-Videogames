@@ -21,7 +21,7 @@
 }
 
 
-.card-container {
+.cardcontainer {
   width: 20vw;
   height: 100vh;
   margin: 0;
@@ -47,7 +47,7 @@
   
 }
 
-.cover-image {
+.coverimage {
   width: 100%;
   height: 100%;
   object-fit: cover;
