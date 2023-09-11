@@ -18,7 +18,6 @@ const Cards = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    // Verifica si los juegos han cargado y establece el estado correspondiente
     setIsContentLoaded(gamesResponse.length > 0);
   }, [gamesResponse]);
 
