@@ -14,6 +14,8 @@ function Create() {
     releaseDate: "",
     rating: "",
     genres: [],
+  
+   
   });
 
   const [errors, setErrors] = useState({
@@ -41,9 +43,14 @@ function Create() {
     } else {
       updatedErrors.name = "";
     }
-    const nameMaxLength = 40; // Reemplaza 100 con el valor máximo admitido por el modelo
+    const nameMaxLength = 40; 
     if (form.name.length > nameMaxLength) {
       updatedErrors.name = `El nombre no puede superar los ${nameMaxLength} caracteres.`;
+    }
+
+    const descriptionMaxLength = 100; 
+    if (form.description.length > descriptionMaxLength) {
+      updatedErrors.description = `La descripción no puede superar los ${nameMaxLength} caracteres.`;
     }
     if (form.name === "") updatedErrors.name = "";
     //VALIDACION DE IMAGEN (URL)
@@ -171,6 +178,7 @@ function Create() {
         releaseDate: "",
         rating: "",
         genres: [],
+        
       });
   
   };
@@ -245,7 +253,7 @@ function Create() {
                 />
                 {errors.rating && <span>{errors.rating}</span>}
               </div>
-  
+
               <div className={style.genreContainer}>
                 {allGenres?.map((genre) => (
                   <div className={style.genreItem} key={genre.id}>

@@ -56,7 +56,7 @@ const Cards = () => {
           >
             Previous
           </button>
-          <h1 className={style.page}>{currentPage}</h1>
+          <span className={style.page}>Page {currentPage} / {Math.ceil(gamesResponse.length / itemsPerPage)}</span>
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentGames.length < itemsPerPage}

@@ -3,8 +3,8 @@ const {createGame} = require('./createGame')
 const postGames = async (req, res) => {
 //Espero a que el juego se cree y lo posteo en BD.
    try {
-    const {name, description, releaseDate, rating, platforms, img, genreName} = req.body
-    const addGame = await createGame (name, description, releaseDate, rating, platforms, img, genreName)
+    const {name, description, releaseDate, rating, platforms, img, genres} = req.body
+    const addGame = await createGame (name, description, releaseDate, rating, platforms, img, genres)
     res.send(addGame).json
    } 
    catch (error) {

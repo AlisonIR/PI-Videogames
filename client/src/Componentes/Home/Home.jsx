@@ -66,14 +66,16 @@ const Home = () => {
         <div>
           <SearchBar />
         </div>
-
+  
         <div className={style.select}>
           <select className={style.filter} onChange={handleFilterGenres} value={filterGenres}>
-            {genresResponse.map((genre) => {
-              return <option value={genre.name}>{genre.name}</option>;
-            })}
+            {genresResponse.map((genre) => (
+              <option key={genre.name} value={genre.name}>
+                {genre.name}
+              </option>
+            ))}
           </select>
-
+  
           <select className={style.filter} value={order} onChange={handleSort}>
             {["Select order", "A-Z", "Z-A", "Best rated", "Least rated"].map(
               (orderItem, index) => (
@@ -83,25 +85,25 @@ const Home = () => {
               )
             )}
           </select>
-
+  
           <select className={style.filter} onChange={handleOrder}>
-            <option value="A">Ascendente</option>
-            <option value="D">Desendente</option>
+            <option key="asc" value="A"> Ascendente</option>
+            <option key="desc" value="D"> Descendente</option>
           </select>
-
+  
           <select className={style.filter} name="Origin" onChange={filterOrigin}>
             <optgroup key="origin" label="Origin">
-            <option value="api">API</option>
-            <option value="db">DB</option>
-           </optgroup>
+              <option key="api" value="api"> API </option>
+              <option key="db" value="db"> DB</option>
+            </optgroup>
           </select>
-
+  
           <button className={style.handlebtn} onClick={handleReset}>
             Reset
           </button>
         </div>
       </div>
-
+  
       <Cards />
     </div>
   );

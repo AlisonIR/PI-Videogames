@@ -1,7 +1,7 @@
 const {Videogame, Genres} = require('../db')
 
 
-const createGame = async (name, description, releaseDate, rating, platforms, img, genreName) => {
+const createGame = async (name, description, releaseDate, rating, platforms, img, genres) => {
  
     const createdGame = await Videogame.findOne({where: {name}});
     if(createdGame) {
@@ -14,17 +14,18 @@ const createGame = async (name, description, releaseDate, rating, platforms, img
     releaseDate,
     rating,
     platforms,
-    img
+    img,
+   
+    
  })
 
- if(genreName?.length > 0){
-    const genres = await Genres.findAll({
-        where: {
-            name: genreName,
-        },
-    })
-    await newGame.setGenres(genres)
- }
+ if(genres && genres.length > 0){
+
+    genres.map(async (id)=>{const genreFound = await Genres.findByPk(id) 
+        await newGame.setGenres(genreFound)})
+
+
+}
  return "The game has been created successfully!"
 }
 

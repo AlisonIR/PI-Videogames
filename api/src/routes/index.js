@@ -6,8 +6,7 @@ const { getGameById } = require('../Controllers/getGameById')
 const { getByName } = require('../Controllers/getByName')
 const { getAllGenre } = require('../Controllers/getAllGenre')
 const { postGames } = require('../Controllers/postGames')
-const { postFav } = require('../Controllers/postFav')
-const { deleteFav } = require('../Controllers/deleteFav')
+
 
 
 
@@ -21,8 +20,6 @@ const router = Router();
  router.get('/videogames/:id', getGameById)
  router.get('/genres', getAllGenre)
  router.post('/videogames', postGames)
-// router.post("/fav", postFav);
-//router.post("/fav", deleteFav);
 
 
 

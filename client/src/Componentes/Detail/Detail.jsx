@@ -45,12 +45,14 @@ const Detail = () => {
               <h1>{game.name}</h1>
             </div>
 
+      
             <div className={style.rating}>
             <h2>rating: {game.rating} released: {game.releaseDate}</h2>
             </div>
             
             <div className={style.genres}>
-            <h2>{game.genres && game.genres.map((genre) => genre.name).join(', ')}</h2>
+            {game.genres ?
+                    game.genres.map((genre) => genre.name).join(", "): game.Genres.map((genre) => genre.name).join(", ")}
             </div>
 
             <div className={style.idcontainer}>
@@ -65,6 +67,7 @@ const Detail = () => {
             <div className={style.platformcontainer}>
             <h2>Platforms: {game.platforms}</h2>
             </div>
+           
 
           </div>
         </div>

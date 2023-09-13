@@ -11,7 +11,7 @@ const getByName = async (req, res) => {
        return respUno.data ? res.status(200).json(respUno.data) : res.status(404).send('Not found')
      }
      catch (error) {
-       res.status(500).send(error.message)
+       alert("Game not found!")
      }
     }
    else {

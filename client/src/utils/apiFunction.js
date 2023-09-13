@@ -49,11 +49,12 @@ export const getAllNames = async(name) => {
         return response.data
     } 
     catch (error) {
-        return {
-            error: "Failed to load the names"
+         
+            alert("Game not found!")
+            return await getAllGames()
         };
     }
-};
+
 
 export const postVideogame = async (form) => {
     try {
